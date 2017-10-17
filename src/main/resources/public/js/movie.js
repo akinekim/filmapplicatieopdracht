@@ -26,7 +26,7 @@ function handleMovie(type) {
     var obj = {
         movieNumber: $("#movieNumber").val(),
         movieName:   $("#movieName").val(),
-        isViewed:    $("#isViewed").val()
+        watched:    $("#watched").val()
     }
 
     var params = {
@@ -93,6 +93,7 @@ function handleMovie(type) {
                 console.log(err);
                 toastr["error"](err.responseJSON.join('<br>'));
             };
+
             break;
 
     }

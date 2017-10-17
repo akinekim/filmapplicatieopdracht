@@ -14,13 +14,12 @@ public class Movie {
     private long movieNumber;
     @Length(max = 25, min = 1, message = "Movie name must be between 1 and 25 characters.")
     private String movieName;
-    @NotNull(message = "Watched? must be specified with 'Yes' or 'No'.")
-    private boolean watched;
+    private Boolean watched;
 
     public Movie() {
     }
 
-    public Movie(String movieName, boolean watched) {
+    public Movie(String movieName, Boolean watched) {
         this.movieName = movieName;
         this.watched = watched;
     }
@@ -45,7 +44,7 @@ public class Movie {
         return watched;
     }
 
-    public void setWatched(boolean watched) {
+    public void setWatched(Boolean watched) {
         this.watched = watched;
     }
 }
