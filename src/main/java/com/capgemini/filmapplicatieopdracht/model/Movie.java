@@ -1,23 +1,25 @@
 package com.capgemini.filmapplicatieopdracht.model;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
 
 @Entity
 public class Movie {
 
     @Id
-    @Column(name = "movieNumber")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long movieNumber;
+    @Length(max = 25, min = 1, message = "Movie name must be between 1 and 25 characters.")
     private String movieName;
-    private boolean isViewed;
-
-    public Movie(String movieName, boolean isViewed) {
-        this.movieName = movieName;
-        this.isViewed = isViewed;
-    }
+    private boolean watched;
 
     public Movie() {
+    }
+
+    public Movie(String movieName, boolean watched) {
+        this.movieName = movieName;
+        this.watched = watched;
     }
 
     public long getMovieNumber() {
@@ -36,12 +38,11 @@ public class Movie {
         this.movieName = movieName;
     }
 
-    public boolean isViewed() {
-        return isViewed;
+    public boolean isWatched() {
+        return watched;
     }
 
-    public void setViewed(boolean viewed) {
-        isViewed = viewed;
+    public void setWatched(boolean watched) {
+        this.watched = watched;
     }
 }
-

@@ -1,4 +1,4 @@
-package com.capgemini.filmapplicatieopdracht.utils;
+package com.capgemini.filmapplicatieopdracht;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

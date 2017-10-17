@@ -4,7 +4,7 @@ var table =
         "columns": [
             { "data": "movieNumber" },
             { "data": "movieName" },
-            { "data": "isViewed" }
+            { "data": "watched" }
         ],
         "columnDefs": [
             {
@@ -50,11 +50,12 @@ function handleMovie(type) {
                 setTimeout(function () {
                     $(rowNode).removeClass('table-success');
                 }, 3000)
-                toastr["success"]('Movie ' + ' added.')
+                toastr["success"]('Movie ' + result["movieName"] + ' added.')
 
             };
             params.error = function (err) {
                 console.log(err);
+                toastr["error"](err.responseJSON.join('<br>'));
             };
 
             break;
@@ -67,10 +68,12 @@ function handleMovie(type) {
                 $("#movieModal").modal('toggle');
                 // Refresh DataTable
                 table.ajax.reload();
-                toastr["success"]('Movie ' + ' updated.')
+                toastr["success"]('Movie ' + result["movieName"] + ' updated.')
+
             };
             params.error = function (err) {
                 console.log(err);
+                toastr["error"](err.responseJSON.join('<br>'));
             };
 
             break;
@@ -83,10 +86,12 @@ function handleMovie(type) {
                 $("#movieModal").modal('toggle');
                 // Reload DataTable
                 table.ajax.reload();
-                toastr["success"]('Movie ' + ' deleted.')
+                toastr["success"]('Movie ' + result["movieName"] + ' deleted.')
+
             };
             params.error = function (err) {
                 console.log(err);
+                toastr["error"](err.responseJSON.join('<br>'));
             };
             break;
 
