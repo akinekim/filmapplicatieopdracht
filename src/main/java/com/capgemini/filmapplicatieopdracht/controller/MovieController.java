@@ -14,31 +14,31 @@ import java.util.List;
 import static com.capgemini.filmapplicatieopdracht.utils.ErrorMapping.mapErrorFields;
 
 @RestController
-@RequestMapping("/api/movie")
 public class MovieController {
 
     @Autowired
-    MovieRepository movieRepository;
+    private MovieRepository movieRepository;
 
-    @RequestMapping(value = "/" , method = RequestMethod.GET)
-    public Iterable<Movie> movieList(){
+    @RequestMapping(value = "/api/movie" , method = RequestMethod.GET)
+    @ResponseBody
+    public Iterable<Movie> movieList() {
         return movieRepository.findAll();
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
-    public Movie postMovie(@Valid @RequestBody Movie movie){
+    @RequestMapping(value = "/api/movie", method = RequestMethod.POST)
+    public Movie process(@Valid @RequestBody Movie movie) {
         movieRepository.save(movie);
         return movie;
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.DELETE)
-    public Movie deleteMovie(@RequestBody Movie movie){
+    @RequestMapping(value = "/api/movie", method = RequestMethod.DELETE)
+    public Movie deleteMovie(@RequestBody Movie movie) {
         movieRepository.delete(movie);
         return movie;
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.PUT)
-    public Movie updateMovie(@Valid @RequestBody Movie movie){
+    @RequestMapping(value = "/api/movie", method = RequestMethod.PUT)
+    public Movie updateMovie(@Valid @RequestBody Movie movie) {
         movieRepository.save(movie);
         return movie;
     }
