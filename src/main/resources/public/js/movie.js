@@ -24,13 +24,13 @@ var table =
 function handleMovie(type) {
 
     var obj = {
-        guestNumber: $("#movieNumber").val(),
-        name:       $("#movieName").val(),
-        surname:    $("#watched").val()
+        movieNumber: $("#movieNumber").val(),
+        movieName:       $("#movieName").val(),
+        watched:    $("#watched").val()
     }
 
     var params = {
-        url: "api/guest",
+        url: "api/movie",
         data: JSON.stringify(obj),
         contentType: "application/json; charset=utf-8"
     };
@@ -65,10 +65,10 @@ function handleMovie(type) {
             params.success = function (result) {
                 console.log(result);
                 // toggle modal
-                $("#guestModal").modal('toggle');
+                $("#movieModal").modal('toggle');
                 // Refresh DataTable
                 table.ajax.reload();
-                toastr["success"]('Guest ' + result["name"] + " " + result["surname"] + ' updated.')
+                toastr["success"]('Movie ' + result["movieName"] + ' updated.')
             };
             params.error = function (err) {
                 console.log(err);
@@ -82,10 +82,10 @@ function handleMovie(type) {
             params.success = function (result) {
                 console.log(result);
                 // Toggle modal
-                $("#guestModal").modal('toggle');
+                $("#movieModal").modal('toggle');
                 // Reload DataTable
                 table.ajax.reload();
-                toastr["success"]('Guest ' + result["name"] + " " + result["surname"] + ' deleted.')
+                toastr["success"]('Movie ' + result["movieName"] + ' deleted.')
             };
             params.error = function (err) {
                 console.log(err);
@@ -95,53 +95,53 @@ function handleMovie(type) {
 
     }
 
-    // if($("#addGuest").valid()){
+    // if($("#addMovie").valid()){
     $.ajax(params);
     //}
 }
 
 
-// Show modal for updating guest
-$('#guestTable tbody').on('click', 'tr', function () {
+// Show modal for updating movie
+$('#movieTable tbody').on('click', 'tr', function () {
     var data = table.row(this).data();
     console.log(data);
-    showGuestModal('modify', data);
+    showMovieModal('modify', data);
 });
 
-// Show modal for adding guests
-$('#addGuestButton').on('click', function () {
-    showGuestModal('add');
+// Show modal for adding movies
+$('#addMovieButton').on('click', function () {
+    showMovieModal('add');
 });
 
-function showGuestModal(format, data) {
+function showMovieModal(format, data) {
     // Populates inputfields and buttons based on format (String)
     // data id optional.
     switch (format) {
         case 'modify':
             // populate form
             $.each(data, function (key, value) {
-                $('#addGuest').find("input[id='" + key + "']").val(value);
+                $('#addMovie').find("input[id='" + key + "']").val(value);
             });
             // initialize title and buttons
-            $('#modalLabel').html('Edit guest "' + data['name'] + ' ' + data ['surname'] + '"');
-            $('#guestDeleteButton').show();
-            $('#guestSaveButton').show();
-            $('#guestAddButton').hide();
+            $('#modalLabel').html('Edit movie "' + data['movieName']);
+            $('#movieDeleteButton').show();
+            $('#movieSaveButton').show();
+            $('#movieAddButton').hide();
             break;
 
         default:
             // empty form
-            $(':input', '#addGuest')
+            $(':input', '#addMovie')
                 .not(':button, :submit, :reset')
                 .val('');
             // initialize title and buttons
-            $('#modalLabel').html('Add new guest');
-            $('#guestDeleteButton').hide();
-            $('#guestSaveButton').hide();
-            $('#guestAddButton').show();
+            $('#modalLabel').html('Add new movie');
+            $('#movieDeleteButton').hide();
+            $('#movieSaveButton').hide();
+            $('#movieAddButton').show();
             break;
     }
 
     // show modal
-    $("#guestModal").modal('toggle');
+    $("#movieModal").modal('toggle');
 }

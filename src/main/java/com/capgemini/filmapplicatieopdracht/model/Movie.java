@@ -1,13 +1,12 @@
 package com.capgemini.filmapplicatieopdracht.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Movie {
+
     @Id
+    @Column(name = "movieNumber")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long movieNumber;
     private String movieName;
