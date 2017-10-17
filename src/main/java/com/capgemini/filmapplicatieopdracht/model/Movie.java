@@ -1,8 +1,10 @@
 package com.capgemini.filmapplicatieopdracht.model;
 
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Movie {
@@ -12,6 +14,7 @@ public class Movie {
     private long movieNumber;
     @Length(max = 25, min = 1, message = "Movie name must be between 1 and 25 characters.")
     private String movieName;
+    @NotNull(message = "Watched? must be specified with 'Yes' or 'No'.")
     private boolean watched;
 
     public Movie() {
