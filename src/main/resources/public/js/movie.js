@@ -27,7 +27,7 @@ function handleMovie(type) {
         movieNumber: $("#movieNumber").val(),
         movieName:   $("#movieName").val(),
         isViewed:    $("#isViewed").val()
-    };
+    }
 
     var params = {
         url: "/api/movie",
