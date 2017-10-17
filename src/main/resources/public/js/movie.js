@@ -4,7 +4,7 @@ var table =
         "columns": [
             { "data": "movieNumber" },
             { "data": "movieName" },
-            { "data": "watched"}
+            { "data": "isViewed" }
         ],
         "columnDefs": [
             {
@@ -25,12 +25,12 @@ function handleMovie(type) {
 
     var obj = {
         movieNumber: $("#movieNumber").val(),
-        movieName:       $("#movieName").val(),
-        watched:    $("#watched").val()
-    }
+        movieName:   $("#movieName").val(),
+        isViewed:    $("#isViewed").val()
+    };
 
     var params = {
-        url: "api/movie",
+        url: "/api/movie",
         data: JSON.stringify(obj),
         contentType: "application/json; charset=utf-8"
     };
@@ -50,12 +50,11 @@ function handleMovie(type) {
                 setTimeout(function () {
                     $(rowNode).removeClass('table-success');
                 }, 3000)
-                toastr["success"]('Movie ' + result["movieName"] + ' added.')
+                toastr["success"]('Movie ' + ' added.')
 
             };
             params.error = function (err) {
                 console.log(err);
-                toastr["error"](err.responseJSON.join('<br>'));
             };
 
             break;
@@ -68,11 +67,10 @@ function handleMovie(type) {
                 $("#movieModal").modal('toggle');
                 // Refresh DataTable
                 table.ajax.reload();
-                toastr["success"]('Movie ' + result["movieName"] + ' updated.')
+                toastr["success"]('Movie ' + ' updated.')
             };
             params.error = function (err) {
                 console.log(err);
-                toastr["error"](err.responseJSON.join('<br>'));
             };
 
             break;
@@ -85,11 +83,10 @@ function handleMovie(type) {
                 $("#movieModal").modal('toggle');
                 // Reload DataTable
                 table.ajax.reload();
-                toastr["success"]('Movie ' + result["movieName"] + ' deleted.')
+                toastr["success"]('Movie ' + ' deleted.')
             };
             params.error = function (err) {
                 console.log(err);
-                toastr["error"](err.responseJSON.join('<br>'));
             };
             break;
 
@@ -123,7 +120,7 @@ function showMovieModal(format, data) {
                 $('#addMovie').find("input[id='" + key + "']").val(value);
             });
             // initialize title and buttons
-            $('#modalLabel').html('Edit movie "' + data['movieName']);
+            $('#modalLabel').html('Edit movie "');
             $('#movieDeleteButton').show();
             $('#movieSaveButton').show();
             $('#movieAddButton').hide();
@@ -136,7 +133,7 @@ function showMovieModal(format, data) {
                 .val('');
             // initialize title and buttons
             $('#modalLabel').html('Add new movie');
-            $('#movieDeleteButton').hide();
+            $('#movieSelectButton').hide();
             $('#movieSaveButton').hide();
             $('#movieAddButton').show();
             break;

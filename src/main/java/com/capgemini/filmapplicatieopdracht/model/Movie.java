@@ -10,8 +10,12 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long movieNumber;
     private String movieName;
-    private Boolean watched;
+    private boolean isViewed;
 
+    public Movie(String movieName, boolean isViewed) {
+        this.movieName = movieName;
+        this.isViewed = isViewed;
+    }
 
     public Movie() {
     }
@@ -32,12 +36,12 @@ public class Movie {
         this.movieName = movieName;
     }
 
-    public Boolean getWatched() {
-        return watched;
+    public boolean isViewed() {
+        return isViewed;
     }
 
-    public void setWatched(Boolean watched) {
-        this.watched = watched;
+    public void setViewed(boolean viewed) {
+        isViewed = viewed;
     }
 }
 
