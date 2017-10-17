@@ -20,24 +20,24 @@ public class MovieController {
     @Autowired
     MovieRepository movieRepository;
 
-    @RequestMapping(value = "" , method = RequestMethod.GET)
+    @RequestMapping(value = "/" , method = RequestMethod.GET)
     public Iterable<Movie> movieList(){
         return movieRepository.findAll();
     }
 
-    @RequestMapping(value = "", method = RequestMethod.POST)
+    @RequestMapping(value = "/", method = RequestMethod.POST)
     public Movie postMovie(@Valid @RequestBody Movie movie){
         movieRepository.save(movie);
         return movie;
     }
 
-    @RequestMapping(value = "", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/", method = RequestMethod.DELETE)
     public Movie deleteMovie(@RequestBody Movie movie){
         movieRepository.delete(movie);
         return movie;
     }
 
-    @RequestMapping(value = "", method = RequestMethod.PUT)
+    @RequestMapping(value = "/", method = RequestMethod.PUT)
     public Movie updateMovie(@Valid @RequestBody Movie movie){
         movieRepository.save(movie);
         return movie;

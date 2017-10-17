@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int movieId;
+    private long movieNumber;
     private String movieName;
     private Boolean watched;
 
@@ -17,18 +17,17 @@ public class Movie {
     public Movie() {
     }
 
-    public Movie(int movieId, String movieName, String releaseDate, Boolean watched) {
-        this.movieId = movieId;
+    public Movie(String movieName, Boolean watched) {
         this.movieName = movieName;
         this.watched = watched;
     }
 
-    public int getMovieId() {
-        return movieId;
+    public long getMovieNumber() {
+        return movieNumber;
     }
 
-    public void setMovieId(int movieId) {
-        this.movieId = movieId;
+    public void setMovieNumber(long movieNumber) {
+        this.movieNumber = movieNumber;
     }
 
     public String getMovieName() {
