@@ -16,11 +16,6 @@ public class Movie {
     public Movie() {
     }
 
-    public Movie(String movieName, Boolean watched) {
-        this.movieName = movieName;
-        this.watched = watched;
-    }
-
     public long getMovieNumber() {
         return movieNumber;
     }
